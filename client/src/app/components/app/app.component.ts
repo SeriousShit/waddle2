@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {ContentService} from "../../services/content.service";
-import {Content} from "../../util/model";
+import {Content, Page} from "../../util/model";
 
 @Component({
   selector: 'app-root',
@@ -11,6 +11,7 @@ export class AppComponent {
   title = 'app works!';
 
   content: Content = new Content();
+  page = new Page();
 
   constructor(private _contentService: ContentService){
     this._contentService.contentSubject.subscribe(content => {
@@ -19,5 +20,12 @@ export class AppComponent {
       console.log(this.content);
     });
 
+  }
+
+  onSubmit() {
+    console.log(this.page);
+
+    this._contentService.addPage(this.page);
+    this.page = new Page();
   }
 }

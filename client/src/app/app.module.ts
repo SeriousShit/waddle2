@@ -10,14 +10,16 @@ import { StartComponent } from './components/start/start.component';
 import { MaterialModule } from '@angular/material';
 
 import 'hammerjs';
-import { PageComponent } from './page/page.component';
+import {PageComponent, DropOverMe, DragMe} from './page/page.component';
 import {NgGridModule} from "./moduls/Grid/NgGrid.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     StartComponent,
-    PageComponent
+    PageComponent,
+    DragMe,
+    DropOverMe
   ],
   imports: [
     HttpModule,
