@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import { NgGridConfig, NgGridItemConfig, NgGridItemEvent } from 'angular2-grid';
-import {NgGrid, NgGridItem} from 'angular2-grid';
+// import {NgGrid, NgGridItem} from 'angular2-grid';
+import {NgGridItemConfig, NgGridConfig, NgGridItemEvent} from "../moduls/Grid/NgGrid.module";
 
 
 interface Box {
@@ -18,26 +18,27 @@ export class PageComponent {
 
   private boxes: Array<Box> = [];
   private rgb: string = '#efefef';
-  private curNum: number = 5;
+  private curNum: number = 2;
+
   private gridConfig: NgGridConfig = <NgGridConfig>{
     'margins': [5],
     'draggable': true,
     'resizable': true,
     'max_cols': 0,
     'max_rows': 0,
-    'visible_cols': 0,
-    'visible_rows': 0,
+    'visible_cols': 1,
+    'visible_rows': 1,
     'min_cols': 1,
     'min_rows': 1,
-    'col_width': 2,
-    'row_height': 2,
+    'col_width': 1,
+    'row_height': 1,
     'cascade': 'up',
     'min_width': 50,
     'min_height': 50,
-    'fix_to_grid': false,
+    'fix_to_grid': true,
     'auto_style': true,
     'auto_resize': false,
-    'maintain_ratio': false,
+    'maintain_ratio': true,
     'prefer_new': false,
     'zoom_on_drag': false,
     'limit_to_screen': true
@@ -85,19 +86,19 @@ export class PageComponent {
   }
 
   updateItem(index: number, event: NgGridItemEvent): void {
-    // Do something here
+    console.log("updateItem");
   }
 
   onDrag(index: number, event: NgGridItemEvent): void {
-    // Do something here
+    console.log("onDrag");
   }
 
   onResize(index: number, event: NgGridItemEvent): void {
-    // Do something here
+    console.log("onResize");
   }
 
   private _generateDefaultItemConfig(): NgGridItemConfig {
-    return { 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 1, 'sizey': 1 };
+    return { 'dragHandle': '.handle' };
   }
 
   private _randomise(): void {

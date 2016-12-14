@@ -7,7 +7,7 @@ import {PageComponent} from "./page/page.component";
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'start',
+    redirectTo: 'page',
     pathMatch: 'full',
   },
   {

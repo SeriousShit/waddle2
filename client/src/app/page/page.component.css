@@ -1,7 +1,7 @@
 .grid {
   background-color: #efefef;
-  width: 100%;
-  height: 800px;
+  width: 1024px;
+  height: 768px;
 }
 
 .grid-item {
@@ -22,6 +22,6 @@
 }
 
 .grid-placeholder {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 

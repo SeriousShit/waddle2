@@ -1,3 +1,40 @@
+
+<div class="grid" [ngGrid]="gridConfig">
+
+  <div *ngFor="let box of boxes; let i = index"
+       [(ngGridItem)]="box.config"
+       (onItemChange)="updateItem(i, $event)"
+       (onResize)="onResize(i, $event)"
+       (onDrag)="onDrag(i, $event)">
+    <div class="handle">
+      <div class="childHandle">
+        <i class="material-icons">drag_handle</i>
+      </div>
+    </div>
+
+    <div class="boxContent">
+      {{box.id}}
+    </div>
+  </div>
+
+  <!-- <div [ngGridItem]="{'dragHandle': '.handle', 'fixed': true, 'col': 2, 'row': 3}" (itemChange)="updateItem(i, $event)" (resize)="onResize(i, $event)" (drag)="onDrag(i, $event)">
+		<div class="handle"></div>
+		Fixed - moveable, resizable
+	</div>
+	<div [ngGridItem]="{'dragHandle': '.handle', 'fixed': true, 'draggable': false, 'col': 1, 'row': 5}" (itemChange)="updateItem(i, $event)" (resize)="onResize(i, $event)" (drag)="onDrag(i, $event)">
+		<div class="handle"></div>
+		Fixed - not moveable, resizable
+	</div>
+	<div [ngGridItem]="{'dragHandle': '.handle', 'fixed': true, 'resizable': false, 'col': 5, 'row': 2}" (itemChange)="updateItem(i, $event)" (resize)="onResize(i, $event)" (drag)="onDrag(i, $event)">
+		<div class="handle"></div>
+		Fixed - moveable, not resizable
+	</div>
+	<div [ngGridItem]="{'dragHandle': '.handle', 'fixed': true, 'resizable': false, 'draggable': false, 'col': 3, 'row': 4}" (itemChange)="updateItem(i, $event)" (resize)="onResize(i, $event)" (drag)="onDrag(i, $event)">
+		<div class="handle"></div>
+		Fixed - not moveable, not resizable
+	</div> -->
+</div>
+
 <div class="container">
   <div class="col-sm-12" style="margin-bottom: 20px;">
     <h1>Angular 2 Grid Demo</h1>
@@ -160,53 +197,4 @@
     <a (click)="_randomise()" class="btn btn-primary pull-right">Randomise Boxes</a>
     <a (click)="addBox()" class="btn btn-primary pull-right">Add Box</a>
   </div>
-</div>
-<div [ngGrid]="gridConfig">
-  <!-- <div [ngGridItem]="{'dragHandle': '.handle', 'maxCols': 2, 'maxRows': 3}" (itemChange)="updateItem(i, $event)" (resize)="onResize(i, $event)" (drag)="onDrag(i, $event)">
-		<div class="handle">
-			<div class="childHandle">
-				<span>Child handle</span>
-			</div>
-		</div>
-		Max Cols - 2<br />
-		Max Rows - 3<br />
-	</div>
-	<div [ngGridItem]="{'dragHandle': '.handle', 'minCols': 2, 'minRows': 3}" (itemChange)="updateItem(i, $event)" (resize)="onResize(i, $event)" (drag)="onDrag(i, $event)">
-		<div class="handle">
-			<div class="childHandle">
-				<span>Child handle</span>
-			</div>
-		</div>
-		Min Cols - 2<br />
-		Min Rows - 3<br />
-	</div>
-	<div [ngGridItem]="{'dragHandle': '.handle', 'minCols': 2, 'minRows': 2, 'maxCols': 4, 'maxRows': 4}" (itemChange)="updateItem(i, $event)" (resize)="onResize(i, $event)" (drag)="onDrag(i, $event)">
-		<div class="handle">
-			<div class="childHandle">
-				<span>Child handle</span>
-			</div>
-		</div>
-		Min Cols/Rows - 2<br />
-		Max Cols/Rows - 3<br />
-	</div> -->
-  <div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)" (onDrag)="onDrag(i, $event)">
-    <div class="handle"></div>
-    {{box.id}}
-  </div>
-  <!-- <div [ngGridItem]="{'dragHandle': '.handle', 'fixed': true, 'col': 2, 'row': 3}" (itemChange)="updateItem(i, $event)" (resize)="onResize(i, $event)" (drag)="onDrag(i, $event)">
-		<div class="handle"></div>
-		Fixed - moveable, resizable
-	</div>
-	<div [ngGridItem]="{'dragHandle': '.handle', 'fixed': true, 'draggable': false, 'col': 1, 'row': 5}" (itemChange)="updateItem(i, $event)" (resize)="onResize(i, $event)" (drag)="onDrag(i, $event)">
-		<div class="handle"></div>
-		Fixed - not moveable, resizable
-	</div>
-	<div [ngGridItem]="{'dragHandle': '.handle', 'fixed': true, 'resizable': false, 'col': 5, 'row': 2}" (itemChange)="updateItem(i, $event)" (resize)="onResize(i, $event)" (drag)="onDrag(i, $event)">
-		<div class="handle"></div>
-		Fixed - moveable, not resizable
-	</div>
-	<div [ngGridItem]="{'dragHandle': '.handle', 'fixed': true, 'resizable': false, 'draggable': false, 'col': 3, 'row': 4}" (itemChange)="updateItem(i, $event)" (resize)="onResize(i, $event)" (drag)="onDrag(i, $event)">
-		<div class="handle"></div>
-		Fixed - not moveable, not resizable
-	</div> -->
 </div>

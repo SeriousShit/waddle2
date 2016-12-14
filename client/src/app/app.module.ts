@@ -8,11 +8,10 @@ import {ContentService} from "./services/content.service";
 import {AppRoutingModule} from "./app-routing.modul";
 import { StartComponent } from './components/start/start.component';
 import { MaterialModule } from '@angular/material';
-import { NgGridModule } from 'angular2-grid';
-
 
 import 'hammerjs';
 import { PageComponent } from './page/page.component';
+import {NgGridModule} from "./moduls/Grid/NgGrid.module";
 
 @NgModule({
   declarations: [

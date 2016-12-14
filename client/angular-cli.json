@@ -18,8 +18,7 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "styles/styles.css",
-        "styles/material2-app-theme.scss"
+        "styles/styles.sass"
       ],
       "scripts": [],
       "environments": {
