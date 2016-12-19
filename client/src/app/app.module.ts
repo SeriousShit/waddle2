@@ -10,8 +10,8 @@ import { StartComponent } from './components/start/start.component';
 import { MaterialModule } from '@angular/material';
 
 import 'hammerjs';
-import {PageComponent, DropOverMe, DragMe} from './page/page.component';
-import {NgGridModule} from "./moduls/Grid/NgGrid.module";
+import {PageComponent, DropOverMe, DragMe} from './components/page/page.component';
+import {DragulaModule} from "ng2-dragula/ng2-dragula";
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import {NgGridModule} from "./moduls/Grid/NgGrid.module";
     BrowserModule,
     FormsModule,
     MaterialModule.forRoot(),
-    NgGridModule
+    DragulaModule
   ],
   providers: [
     ContentService

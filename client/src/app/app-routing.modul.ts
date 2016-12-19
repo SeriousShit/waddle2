@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import {StartComponent} from "./components/start/start.component";
-import {PageComponent} from "./page/page.component";
+import {PageComponent} from "./components/page/page.component";
 
 const routes: Routes = [
   {

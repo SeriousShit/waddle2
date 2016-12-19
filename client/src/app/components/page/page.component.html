@@ -1,0 +1,35 @@
+<div id="page">
+  <div class='wrapper'>
+    <div class='container, pageContent' [dragula]='"bag"' [dragulaModel]='many'>
+      <div *ngFor='let text of many'>
+        <md-card>
+          {{text}}
+        </md-card>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+  <div id="screen-sidebar-expanded">
+    <md-tab-group>
+
+      <md-tab label="Add">
+        <div class='container, template' [dragula]='"bag"' [dragulaModel]='many2'>
+          <div *ngFor='let text of many2'>
+            <md-card>
+              {{text}}
+            </md-card>
+          </div>
+        </div>
+      </md-tab>
+
+      <md-tab label="Edit">
+        <h1>Some more tab content</h1>
+        <p>...</p>
+      </md-tab>
+
+    </md-tab-group>
+  </div>
