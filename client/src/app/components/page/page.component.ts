@@ -2,6 +2,7 @@ import {Component, OnInit, HostListener, Input} from '@angular/core';
 import {DragulaService} from "ng2-dragula/components/dragula.provider";
 import {PageSegment} from "../../util/model";
 import {indexOfId} from "../../util/comon";
+import {ActivatedRoute, Params} from "@angular/router";
 
 
 @Component({
@@ -20,7 +21,10 @@ export class PageComponent {
 
   public textFieldContent: string = "";
 
-  constructor(private dragulaService: DragulaService) {
+  pageRef:string;
+
+  constructor(private dragulaService: DragulaService,
+              private _activatedRoute: ActivatedRoute) {
 
 
     this.dragulaService.setOptions('bag', {
@@ -74,6 +78,15 @@ export class PageComponent {
 
   }
 
+  ngOnInit(): any {
+    //console.log("ngOnInit");
+    this._activatedRoute.params.forEach((params: Params) => {
+      this.pageRef = params['id'];
+      console.log(this.pageRef);
+    });
+  }
+
+
   segmentClicked($event) {
 
     this.selectedIndex = 1;
@@ -88,6 +101,10 @@ export class PageComponent {
   textChange($event: string) {
     console.log($event);
     this.pageSegments[indexOfId(this.pageSegments, this.editItem.id)].text = $event;
+  }
+
+  savePage(){
+
   }
 
 

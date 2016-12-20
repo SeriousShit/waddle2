@@ -1,6 +1,7 @@
 import com.google.gson.Gson;
 import model.Content;
 import model.Page;
+import model.PageRef;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +14,7 @@ public class Main {
     private static Map<String, Book> books = new HashMap<String, Book>();
 
     private static Content content = new Content();
+    private static Map<String, Page> pages = new HashMap<>();
 
     public static void main(String[] args) {
 
@@ -30,11 +32,23 @@ public class Main {
 
         // Gets the book resource for the provided id
         post("/api/content", (request, response) -> {
-            Page p = gson.fromJson(request.body(), Page.class);
-            System.out.println(p);
-            content.addPage(p);
+            PageRef pageRef = gson.fromJson(request.body(), PageRef.class);
+            System.out.println(pageRef);
+
+//            pages.put(p.id, p);
+            pages.put(pageRef.id, new Page(pageRef.id));
+            content.addPagRef(pageRef);
+
             return content;
         }, gson::toJson);
+
+
+        // Gets the book resource for the provided id
+        get("/api/page/:id", (request, response) -> {
+            System.out.println("/api/page/" + request.params(":id"));
+            return pages.get(request.params(":id"));
+        }, gson::toJson);
+
 
 
 

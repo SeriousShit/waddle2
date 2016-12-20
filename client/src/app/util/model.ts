@@ -3,19 +3,29 @@ import {IdInterface, getId} from "../util/comon";
 
 export class Content {
     name: string;
-    pageRefs: string[];
+    pageRefs: PageRef[];
+}
+export class PageRef implements IdInterface{
+  id: string;
+  title: string;
 }
 
 export class Page implements IdInterface{
   id:string;
   title: string;
   pageSegments: PageSegment[];
+
+  constructor(title: string) {
+    this.title = title;
+    this.id = getId();
+  }
 }
 
 export class PageSegment implements IdInterface{
   id:string;
   name: string;
-  text: string = "";
+
+  text: string;
 
   constructor(name: string) {
     this.name = name;
