@@ -1,38 +1,24 @@
-import {IdInterface} from "../util/comon";
+import {IdInterface, guid} from "../util/comon";
+
 
 export class Content {
     name: string;
-    colorScheme: {
-        menuColor: string;
-    };
-    imprint: {
-        name: string;
-        $href: string;
-    };
-    pages: MenuPage[];
-    modules: ContentModul[];
-}
-
-export class ContentModul {
-    name: string;
-    pages: MenuPage[];
-}
-
-export class MenuPage {
-    menuName: string;
-    subtitle: string;
-    info: string;
-    type: string;
-    $href: string;
-    transkript: string = null;
-    material: string = null;
-    descriptition: string;
-    subPages: MenuPage[];
+    pages: Page[];
 }
 
 export class Page {
   title: string;
-    components: ContetComponent[];
+  pageSegments: PageSegment[];
+}
+
+export class PageSegment implements IdInterface{
+  id:string;
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+    this.id = guid();
+  }
 }
 
 export class ContetComponent {

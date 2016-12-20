@@ -10,16 +10,18 @@ import { StartComponent } from './components/start/start.component';
 import { MaterialModule } from '@angular/material';
 
 import 'hammerjs';
-import {PageComponent, DropOverMe, DragMe} from './components/page/page.component';
+import {PageComponent} from './components/page/page.component';
 import {DragulaModule} from "ng2-dragula/ng2-dragula";
+import { PageSegmentComponent } from './components/page-segment/page-segment.component';
+import { MarkdownEditorComponent } from './components/markdown-editor/markdown-editor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartComponent,
     PageComponent,
-    DragMe,
-    DropOverMe
+    PageSegmentComponent,
+    MarkdownEditorComponent
   ],
   imports: [
     HttpModule,

@@ -1,10 +1,12 @@
 <div id="page">
   <div class='wrapper'>
-    <div class='container, pageContent' [dragula]='"bag"' [dragulaModel]='many'>
-      <div *ngFor='let text of many'>
-        <md-card>
-          {{text}}
-        </md-card>
+    <div class='container, pageContent' [dragula]='"bag"' [dragulaModel]='pageSegments'>
+      <div *ngFor='let segment of pageSegments'>
+        <app-page-segment
+          [pageSegment]="segment"
+          (segmentClicked)="segmentClicked($event)">
+
+        </app-page-segment>
       </div>
     </div>
 
@@ -12,24 +14,24 @@
 </div>
 
 
+<div id="screen-sidebar-expanded">
+  <md-tab-group [selectedIndex]="selectedIndex">
 
-  <div id="screen-sidebar-expanded">
-    <md-tab-group>
+    <md-tab label="Add">
+      <div class='container, template' id="" [dragula]='"bag"' [dragulaModel]='templates'>
+        <div *ngFor='let segment of templates'>
+          <app-page-segment [pageSegment]="segment">
 
-      <md-tab label="Add">
-        <div class='container, template' [dragula]='"bag"' [dragulaModel]='many2'>
-          <div *ngFor='let text of many2'>
-            <md-card>
-              {{text}}
-            </md-card>
-          </div>
+          </app-page-segment>
         </div>
-      </md-tab>
+      </div>
+    </md-tab>
 
-      <md-tab label="Edit">
-        <h1>Some more tab content</h1>
-        <p>...</p>
-      </md-tab>
+    <md-tab label="Edit">
+      <app-markdown-editor [(model)]="textFieldContent">
 
-    </md-tab-group>
-  </div>
+      </app-markdown-editor>
+    </md-tab>
+
+  </md-tab-group>
+</div>

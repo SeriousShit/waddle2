@@ -1,0 +1,56 @@
+<div class="panel panel-default">
+  <div class="panel-heading clearfix">
+    <div class="pull-left" ng-show="!preview">
+
+      <a (click)="onEditor('bold')">
+        <i class="material-icons">format_bold</i>
+      </a>
+
+      <a (click)="onEditor('italic')">
+        <i class="material-icons">format_italic</i>      </a>
+
+      <a (click)="onEditor('underline')">
+        <i class="material-icons">format_underlined</i>
+      </a>
+
+      <a (click)="onEditor('hr')">
+        <i class="material-icons">remove</i>
+      </a>
+
+      <a (click)="onEditor('list')">
+        <i class="material-icons">format_list_bulleted</i>
+      </a>
+
+      <a (click)="onEditor('header')">
+        <i class="material-icons">title</i>
+      </a>
+
+      <a (click)="onEditor('img')">
+        <i class="material-icons">insert_link</i>
+      </a>
+
+      <a (click)="onEditor('url')">
+        <i class="material-icons">insert_photo</i>
+      </a>
+
+      <a (click)="onEditor('codeblock')">
+        <i class="material-icons">code</i>
+      </a>
+
+      <a (click)="onEditor('quote')">
+        <i class="material-icons">format_quote</i>
+      </a>
+
+      <a (click)="onEditor('strikethrough')">
+        <i class="material-icons">strikethrough_s</i>
+      </a>
+    </div>
+
+  </div>
+
+  <textarea id="textarea1" class="materialize-textarea"></textarea>
+  <label for="textarea1">Textarea</label>
+  <!--<div class="panel-body" *ngIf="preview">-->
+    <!--<markdown-viewer [model]="model"></markdown-viewer>-->
+  <!--</div>-->
+</div>

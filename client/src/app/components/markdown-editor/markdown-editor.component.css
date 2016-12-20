@@ -1,0 +1,11 @@
+textarea {
+  font-family: 'Andale Mono', 'Lucida Typewriter', monospace;
+  font-size: small;
+  width: 100%;
+  resize: none;
+}
+
+.material-icons{
+  margin-top: 6px;
+  margin-left: 1px;
+}

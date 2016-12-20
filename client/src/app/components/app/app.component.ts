@@ -7,8 +7,8 @@ import {Content, Page} from "../../util/model";
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.sass']
 })
-
 export class AppComponent {
+  title = 'app works!';
 
   content: Content = new Content();
   page = new Page();
