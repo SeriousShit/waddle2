@@ -28,4 +28,8 @@ export class AppComponent {
     this._contentService.addPage(this.page);
     this.page = new Page();
   }
+
+  save(){
+
+  }
 }

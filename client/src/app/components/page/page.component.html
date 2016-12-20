@@ -2,11 +2,15 @@
   <div class='wrapper'>
     <div class='container, pageContent' [dragula]='"bag"' [dragulaModel]='pageSegments'>
       <div *ngFor='let segment of pageSegments'>
-        <app-page-segment
-          [pageSegment]="segment"
-          (segmentClicked)="segmentClicked($event)">
 
-        </app-page-segment>
+        <div class="segment" [ngClass]="{'slectet': segment.id === editItem.id}" >
+          <app-page-segment
+             [pageSegment]="segment"
+             [text]="segment.text"
+             (segmentClicked)="segmentClicked($event)">
+          </app-page-segment>
+        </div>
+
       </div>
     </div>
 
@@ -20,7 +24,7 @@
     <md-tab label="Add">
       <div class='container, template' id="" [dragula]='"bag"' [dragulaModel]='templates'>
         <div *ngFor='let segment of templates'>
-          <app-page-segment [pageSegment]="segment">
+          <app-page-segment [pageSegment]="segment" >
 
           </app-page-segment>
         </div>
@@ -28,7 +32,7 @@
     </md-tab>
 
     <md-tab label="Edit">
-      <app-markdown-editor [(model)]="textFieldContent">
+      <app-markdown-editor [(model)]="textFieldContent" (modelChange)="textChange($event)">
 
       </app-markdown-editor>
     </md-tab>

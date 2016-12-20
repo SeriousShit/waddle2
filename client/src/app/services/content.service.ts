@@ -48,5 +48,9 @@ export class ContentService {
       );
   }
 
+  public saveContent(){
+
+  }
+
 
 }

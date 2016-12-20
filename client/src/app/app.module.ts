@@ -15,6 +15,7 @@ import {DragulaModule} from "ng2-dragula/ng2-dragula";
 import { PageSegmentComponent } from './components/page-segment/page-segment.component';
 import { MarkdownEditorComponent } from './components/markdown-editor/markdown-editor.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

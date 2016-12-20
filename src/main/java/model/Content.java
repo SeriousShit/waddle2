@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by hagen on 06.12.2016.
  */
 public class Content {
-    public String name = "test";
+    public String name = "Waddle";
     public ArrayList<Page> pages = new ArrayList<>();
 
 

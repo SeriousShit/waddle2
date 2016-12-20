@@ -1,12 +1,13 @@
-import {IdInterface, guid} from "../util/comon";
+import {IdInterface, getId} from "../util/comon";
 
 
 export class Content {
     name: string;
-    pages: Page[];
+    pageRefs: string[];
 }
 
-export class Page {
+export class Page implements IdInterface{
+  id:string;
   title: string;
   pageSegments: PageSegment[];
 }
@@ -14,10 +15,11 @@ export class Page {
 export class PageSegment implements IdInterface{
   id:string;
   name: string;
+  text: string = "";
 
   constructor(name: string) {
     this.name = name;
-    this.id = guid();
+    this.id = getId();
   }
 }
 

@@ -48,8 +48,9 @@
 
   </div>
 
-  <textarea id="textarea1" class="materialize-textarea"></textarea>
-  <label for="textarea1">Textarea</label>
+  <div class="panel-body" style="padding: 2px;" *ngIf="!preview">
+    <textarea #editArea class="form-control" rows="20" [ngModel]="model" (ngModelChange)="modelChange.emit($event)"></textarea>
+  </div>
   <!--<div class="panel-body" *ngIf="preview">-->
     <!--<markdown-viewer [model]="model"></markdown-viewer>-->
   <!--</div>-->

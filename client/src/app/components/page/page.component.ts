@@ -12,24 +12,23 @@ import {indexOfId} from "../../util/comon";
 
 export class PageComponent {
 
-
   public templates: Array<PageSegment> = [new PageSegment("text"), new PageSegment("Bild"), new PageSegment("Video")];
   public pageSegments: Array<PageSegment> = [new PageSegment("text")];
 
-  public selectedIndex:number = 0;
-  public editItem: PageSegment;
+  public selectedIndex: number = 0;
+  public editItem: PageSegment = this.pageSegments[0];
 
-  public textFieldContent:string = "";
+  public textFieldContent: string = "";
 
   constructor(private dragulaService: DragulaService) {
 
-    // dragulaService.setOptions('bag', {
-    //   // revertOnSpill: true;
-    //   // removeOnSpill: true,
-    //   copy: true
-    // });
 
     this.dragulaService.setOptions('bag', {
+
+      // removeOnSpill: (el: Element, target: Element, source: Element, sibling: Element): boolean => {
+      //   // console.log(`accepts`);
+      //   return target.classList.contains("pageContent");
+      // },
 
       copySortSource: (el: Element, target: Element, source: Element, sibling: Element): boolean => {
         // console.log(`accepts`);
@@ -45,6 +44,7 @@ export class PageComponent {
         // console.log(`accepts`);
         return target.classList.contains("pageContent"); // elements can not be dropped within themselves
       },
+
       moves: (el: Element, container: Element, handle: Element): boolean => {
         // only move favorite items, not the icon element
         // console.log(`moves`);
@@ -54,10 +54,6 @@ export class PageComponent {
       },
     });
 
-    // dragulaService.drag.subscribe((value) => {
-    //   console.log(`drag: ${value[0]}`);
-    //   this.onDrag(value.slice(1));
-    // });
     dragulaService.drop.subscribe((value) => {
       // console.log(`drop: ${value[0]}`);
       // this.onDrop(value.slice(1));
@@ -71,57 +67,28 @@ export class PageComponent {
     //   console.log(`out: ${value[0]}`);
     //   this.onOut(value.slice(1));
     // });
+    // dragulaService.drag.subscribe((value) => {
+    //   console.log(`drag: ${value[0]}`);
+    //   this.onDrag(value.slice(1));
+    // });
 
   }
 
-  segmentClicked($event){
+  segmentClicked($event) {
 
     this.selectedIndex = 1;
 
-    console.log("segmentClicked" +$event.id);
+    console.log("segmentClicked" + $event.id);
     console.log(this.templates);
 
     this.editItem = this.pageSegments[indexOfId(this.pageSegments, $event.id)];
-    console.log(this.editItem);
+    this.textFieldContent = this.editItem.text;
   }
 
-  // private hasClass(el: any, name: string) {
-  //   return new RegExp('(?:^|\\s+)' + name + '(?:\\s+|$)').test(el.className);
-  // }
-  //
-  // private addClass(el: any, name: string) {
-  //   if (!this.hasClass(el, name) ) {
-  //     el.className = el.className ? [el.className, name].join(' ') : name;
-  //   }
-  // }
-  //
-  // private removeClass(el: any, name: string) {
-  //   console.log(el);
-  //   console.log(this.hasClass(el, "pageContent"));
-  //   if (this.hasClass(el, name)) {
-  //     el.className = el.className.replace(new RegExp('(?:^|\\s+)' + name + '(?:\\s+|$)', 'g'), '');
-  //   }
-  // }
-  //
-  // private onDrag(args) {
-  //   let [e, el] = args;
-  //   this.removeClass(e, 'ex-moved');
-  // }
-  //
-  // private onDrop(args) {
-  //   let [e, el] = args;
-  //   this.addClass(e, 'ex-moved');
-  // }
-  //
-  // private onOver(args) {
-  //   let [e, el, container] = args;
-  //   this.addClass(el, 'ex-over');
-  // }
-  //
-  // private onOut(args) {
-  //   let [e, el, container] = args;
-  //   this.removeClass(el, 'ex-over');
-  // }
+  textChange($event: string) {
+    console.log($event);
+    this.pageSegments[indexOfId(this.pageSegments, this.editItem.id)].text = $event;
+  }
 
 
 }

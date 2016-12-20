@@ -8,7 +8,7 @@ import {Component, OnInit, Input, Output, EventEmitter, ViewChild} from '@angula
 export class MarkdownEditorComponent implements OnInit {
 
   @Input() model: string
-  @Output() modelChange = new EventEmitter<string>()
+  @Output() modelChange = new EventEmitter<string>();
   @ViewChild('editArea') editArea: any;
   preview = false
 
