@@ -1,0 +1,12 @@
+.overflow{
+  width: 10em;
+  margin: 0 0 2em 0;
+  text-overflow: ellipsis;
+
+/**
+ * Required properties to achieve text-overflow
+ */
+    white-space: nowrap;
+  overflow: hidden;
+}
+

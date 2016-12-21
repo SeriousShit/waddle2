@@ -1,0 +1,11 @@
+.slectet{
+  background-color: aqua;
+}
+
+.segment{
+  padding: 2px;
+}
+
+.pageContent{
+  min-height: 200px;
+}
