@@ -3,6 +3,7 @@ import {ContentService} from "../../services/content.service";
 import {Content, Page, PageRef} from "../../util/model";
 import {MdDialog, MdDialogRef, MdDialogConfig} from '@angular/material';
 import {Router} from "@angular/router";
+import {DragulaService} from "ng2-dragula/components/dragula.provider";
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ export class AppComponent {
 
   constructor(private contentService: ContentService,
               public dialog: MdDialog,
+              private dragulaService: DragulaService,
               private router: Router){
     this.contentService.contentSubject.subscribe(content => {
       this.content = content;
@@ -25,6 +27,22 @@ export class AppComponent {
       console.log(this.content);
     });
 
+    this.dragulaService.setOptions('pageList', {
+
+      removeOnSpill: (el: Element, target: Element, source: Element, sibling: Element): boolean => {
+        // console.log(`accepts`);
+        return true;
+      },
+
+      copySortSource: (el: Element, target: Element, source: Element, sibling: Element): boolean => {
+        // console.log(`accepts`);
+        return !target.classList.contains("template");
+      },
+
+      copy: false,
+
+
+    });
   }
 
 

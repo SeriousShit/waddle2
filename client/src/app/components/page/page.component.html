@@ -32,9 +32,17 @@
     </md-tab>
 
     <md-tab label="Edit">
-      <app-markdown-editor [(model)]="textFieldContent" (modelChange)="textChange($event)">
+
+      <app-markdown-editor *ngIf="selectedItem >= 0" [(model)]="textFieldContent" (modelChange)="textChange($event)">
 
       </app-markdown-editor>
+
+      <div *ngIf="selectedItem == -1">
+        <md-card>
+          select item to edit
+        </md-card>
+      </div>
+
     </md-tab>
 
   </md-tab-group>

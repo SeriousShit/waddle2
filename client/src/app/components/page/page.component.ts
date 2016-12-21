@@ -12,7 +12,7 @@ import {ContentService} from "../../services/content.service";
   styleUrls: ['page.component.css']
 })
 
-export class PageComponent {
+export class PageComponent implements OnInit{
 
 
   public templates: Array<PageSegment> = [new PageSegment("text"), new PageSegment("Bild"), new PageSegment("Video")];
@@ -25,7 +25,7 @@ export class PageComponent {
   public textFieldContent: string = "";
 
   private page: Page;
-  pageRef:string;
+  pageRef: string;
 
   constructor(private contentService: ContentService,
               private dragulaService: DragulaService,
@@ -85,11 +85,13 @@ export class PageComponent {
 
   ngOnInit(): any {
     //console.log("ngOnInit");
+
+    this.selectedItem = -1;
     this._activatedRoute.params.forEach((params: Params) => {
       this.pageRef = params['id'];
       console.log(this.pageRef);
       this.contentService.activPageSubject.subscribe((page) => {
-        if (page !== undefined) {
+        if ( page !== undefined ) {
           this.page = page;
           this.pageSegments = page.pageSegments;
 
@@ -121,7 +123,7 @@ export class PageComponent {
     this.pageSegments[indexOfId(this.pageSegments, this.editItem.id)].text = $event;
   }
 
-  savePage(){
+  savePage() {
     this.page.pageSegments = this.pageSegments;
     this.contentService.savePage(this.page);
   }
