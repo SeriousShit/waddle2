@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Subject, ReplaySubject} from "rxjs";
-import {Content, Page} from "../util/model";
+import {Content, Page, PageSegment} from "../util/model";
 import {Http, Response} from "@angular/http";
 import Dictionary from "../util/Dictionary";
 
@@ -8,11 +8,12 @@ import Dictionary from "../util/Dictionary";
 export class ContentService {
 
   contentSubject: Subject<Content> = new ReplaySubject<Content>();
+  activPageSubject: Subject<Page> = new Subject<Page>();
 
   private pageCacheDict: Dictionary<string, Page> = new Dictionary<string, Page>();
 
   private apiContentUrl: string = 'api/content';
-  private apiPagetUrl: string = 'api/page/';
+  private apiPagetUrl: string = 'api/page';
 
   private content: Content;
 
@@ -50,6 +51,16 @@ export class ContentService {
         }
       );
   }
+  public savePage(page: Page){
+    this._http.post(this.apiPagetUrl, JSON.stringify(page))
+      .map((res: Response) => res.json())
+      .subscribe(
+        (content: Content) => {
+          this.content = content;
+          this.contentSubject.next(this.content);
+        }
+      );
+  }
 
   private cachePages(){
     if (this.content !== undefined){
@@ -76,12 +87,28 @@ export class ContentService {
     }
   }
 
-  public getPage(pageRef: string): Page {
-    return this.pageCacheDict.getValue(pageRef);
+  public getPage(pageRef: string) {
+    let page = this.pageCacheDict.getValue(pageRef);
+
+    if(page !== undefined && page !== null) {
+      this.activPageSubject.next(page);
+    } else {
+      this.fetchPage(pageRef)
+        .subscribe(
+          (page: Page) => {
+            this.pageCacheDict.setValue(pageRef, page);
+            this.activPageSubject.next(page);
+          },
+          error => {
+            console.log(error);
+            return error;
+          }
+        );
+    }
   }
 
   public fetchPage(pageRef: string) {
-    return this._http.get(this.apiPagetUrl + pageRef)
+    return this._http.get(this.apiPagetUrl + "/" +pageRef)
       .map((res: Response) => res.json());
   }
 }

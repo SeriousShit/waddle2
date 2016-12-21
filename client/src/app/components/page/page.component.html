@@ -1,9 +1,9 @@
 <div id="page">
   <div class='wrapper'>
     <div class='container, pageContent' [dragula]='"bag"' [dragulaModel]='pageSegments'>
-      <div *ngFor='let segment of pageSegments'>
+      <div *ngFor='let segment of pageSegments; let i = index'>
 
-        <div class="segment" [ngClass]="{'slectet': segment.id === editItem.id}" >
+        <div class="segment" [ngClass]="{ 'slectet': selectedItem == i}" >
           <app-page-segment
              [pageSegment]="segment"
              [text]="segment.text"
@@ -19,7 +19,7 @@
 
 
 <div id="screen-sidebar-expanded">
-  <md-tab-group [selectedIndex]="selectedIndex">
+  <md-tab-group [(selectedIndex)]="activeTabIndex">>
 
     <md-tab label="Add">
       <div class='container, template' id="" [dragula]='"bag"' [dragulaModel]='templates'>

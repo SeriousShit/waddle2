@@ -6,4 +6,12 @@ package model;
 public class PageSegment {
     public String id;
     public String text;
+
+    @Override
+    public String toString() {
+        return "PageSegment{" +
+                "id='" + id + '\'' +
+                ", text='" + text + '\'' +
+                '}';
+    }
 }
