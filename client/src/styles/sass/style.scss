@@ -1,0 +1,49 @@
+@include md-core();
+
+/* 1. Reset
+   ========================================================================== */
+
+
+ body{
+  margin: 0;
+ }
+
+
+
+/* 2. General
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  height: calc((100vh - 64px));
+  max-width: none;
+  .section {
+    width: 100%;
+  }
+}
+
+
+#screen-sidebar-expanded {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 320px;
+  height: calc(100vh - 64px);
+  background: #b0bec5;
+
+  .down {
+    height: 64px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    border-color: #616161;
+    border-top: solid 1px;
+    border-top-color: #616161;
+    z-index: 20;
+
+  }
+}
+
+#page{
+  padding-right: 320px;
+}

@@ -1,13 +1,47 @@
-<md-toolbar color="primary">
-  <span>{{title}}</span>
+<md-sidenav-layout>
+  <md-sidenav #sidenav mode="side" class="app-sidenav">
 
-  <!-- This fills the remaining space of the current row -->
-  <span class="example-fill-remaining-space"></span>
+    <div>
+      <md-toolbar color="primary">
+        <span>Pages</span>
+        <span class="example-fill-remaining-space"></span>
+        <span (click)="onAddPageDialog()">
+          <i class="material-icons">note_add</i>
+        </span>
+      </md-toolbar>
+    </div>
+    <div>
+      <div class='container, pageList' id="" [dragula]='"pageList"' [dragulaModel]='content.pageRefs'>
 
-  <span>Right Aligned Text</span>
-</md-toolbar>
+        <md-list *ngFor="let pageRef of content.pageRefs">
+          <md-list-item (click)="onSelect(pageRef)">
+            <a class="overflow">
+              {{pageRef.title}}
+            </a>
+          </md-list-item>
+        </md-list>
+      </div>
+    </div>
 
 
-<main id="main flow-text">
-  <router-outlet></router-outlet>
-</main>
+  </md-sidenav>
+
+  <md-toolbar color="primary">
+    <a (click)="sidenav.toggle()">
+      <i class="material-icons app-toolbar-menu">menu</i>
+    </a>
+
+    <span class="example-fill-remaining-space"></span>
+
+    <span (click)="onGoStart()">Waddle</span>
+
+    <span class="example-fill-remaining-space"></span>
+  </md-toolbar>
+
+  <main id="main flow-text">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+
+</md-sidenav-layout>

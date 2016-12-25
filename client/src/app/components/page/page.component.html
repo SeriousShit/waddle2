@@ -1,0 +1,57 @@
+<div id="page">
+  <div class='wrapper'>
+    <div class='container, pageContent' [dragula]='"bag"' [dragulaModel]='pageSegments'>
+      <div *ngFor='let segment of pageSegments; let i = index'>
+
+        <div class="segment" [ngClass]="{ 'slectet': selectedItem == i}" >
+          <app-page-segment
+             [pageSegment]="segment"
+             [text]="segment.text"
+             (segmentClicked)="segmentClicked($event)">
+          </app-page-segment>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="screen-sidebar-expanded">
+  <md-tab-group [(selectedIndex)]="activeTabIndex">>
+
+    <md-tab label="Add">
+      <div class='container, template' id="" [dragula]='"bag"' [dragulaModel]='templates'>
+        <div *ngFor='let segment of templates'>
+          <app-page-segment [pageSegment]="segment" >
+
+          </app-page-segment>
+        </div>
+      </div>
+    </md-tab>
+
+    <md-tab label="Edit">
+
+      <app-markdown-editor *ngIf="selectedItem >= 0" [(model)]="textFieldContent" (modelChange)="textChange($event)">
+
+      </app-markdown-editor>
+
+      <div *ngIf="selectedItem == -1">
+        <md-card>
+          select item to edit
+        </md-card>
+      </div>
+
+    </md-tab>
+
+  </md-tab-group>
+
+  <div class="down">
+    <md-toolbar [color]="myColor">
+      <span class="example-fill-remaining-space"></span>
+      <span (click)="savePage()"><i class="material-icons">save</i></span>
+    </md-toolbar>
+  </div>
+
+</div>
