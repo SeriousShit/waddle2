@@ -49,7 +49,15 @@ public class Main {
             return pages.get(request.params(":id"));
         }, gson::toJson);
 
+        post("/api/page", (request, response) -> {
+            Page page = gson.fromJson(request.body(), Page.class);
+            System.out.println(page);
 
+//            pages.put(p.id, p);
+            pages.put(page.id, page);
+
+            return content;
+        }, gson::toJson);
 
 
         // Creates a new book resource, will return the ID to the created resource

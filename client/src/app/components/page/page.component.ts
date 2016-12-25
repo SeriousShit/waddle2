@@ -1,8 +1,9 @@
 import {Component, OnInit, HostListener, Input} from '@angular/core';
 import {DragulaService} from "ng2-dragula/components/dragula.provider";
-import {PageSegment} from "../../util/model";
+import {PageSegment, Page} from "../../util/model";
 import {indexOfId} from "../../util/comon";
 import {ActivatedRoute, Params} from "@angular/router";
+import {ContentService} from "../../services/content.service";
 
 
 @Component({
@@ -11,19 +12,23 @@ import {ActivatedRoute, Params} from "@angular/router";
   styleUrls: ['page.component.css']
 })
 
-export class PageComponent {
+export class PageComponent implements OnInit{
+
 
   public templates: Array<PageSegment> = [new PageSegment("text"), new PageSegment("Bild"), new PageSegment("Video")];
-  public pageSegments: Array<PageSegment> = [new PageSegment("text")];
+  public pageSegments: Array<PageSegment> = [];
 
-  public selectedIndex: number = 0;
-  public editItem: PageSegment = this.pageSegments[0];
+  public selectedItem: number = -1;
+  public activeTabIndex: number = 0;
+  public editItem: PageSegment;
 
   public textFieldContent: string = "";
 
-  pageRef:string;
+  private page: Page;
+  pageRef: string;
 
-  constructor(private dragulaService: DragulaService,
+  constructor(private contentService: ContentService,
+              private dragulaService: DragulaService,
               private _activatedRoute: ActivatedRoute) {
 
 
@@ -80,31 +85,47 @@ export class PageComponent {
 
   ngOnInit(): any {
     //console.log("ngOnInit");
+
+    this.selectedItem = -1;
     this._activatedRoute.params.forEach((params: Params) => {
       this.pageRef = params['id'];
       console.log(this.pageRef);
+      this.contentService.activPageSubject.subscribe((page) => {
+        if ( page !== undefined ) {
+          this.page = page;
+          this.pageSegments = page.pageSegments;
+
+
+        } else {
+
+        }
+      });
+
+      this.contentService.getPage(this.pageRef);
+
+
     });
   }
 
 
   segmentClicked($event) {
+    this.activeTabIndex = 1;
 
-    this.selectedIndex = 1;
-
-    console.log("segmentClicked" + $event.id);
-    console.log(this.templates);
+    this.selectedItem = indexOfId(this.pageSegments, $event.id);
 
     this.editItem = this.pageSegments[indexOfId(this.pageSegments, $event.id)];
     this.textFieldContent = this.editItem.text;
   }
 
   textChange($event: string) {
+
     console.log($event);
     this.pageSegments[indexOfId(this.pageSegments, this.editItem.id)].text = $event;
   }
 
-  savePage(){
-
+  savePage() {
+    this.page.pageSegments = this.pageSegments;
+    this.contentService.savePage(this.page);
   }
 
 
