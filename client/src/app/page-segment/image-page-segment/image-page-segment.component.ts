@@ -11,15 +11,18 @@ export class ImagePageSegmentComponent implements OnInit {
   @Input('image') image: Image;
 
 
-  hasImage: boolean: false;
+  hasImage: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
-    if (this.image === undefined ) {
+    if ( this.image === undefined ) {
       this.hasImage = false;
-    } else if(this.image.caption === undefined  || this.image.url === undefined ) {
-        this.hasImage = false;
+    } else if(this.image.caption === undefined ||
+      this.image.url === undefined ||
+      this.image.caption === null ||
+      this.image.url === null ) {
+      this.hasImage = false;
     } else if(this.image.caption.length == 0 && this.image.url.length == 0) {
       this.hasImage = false;
     } else {

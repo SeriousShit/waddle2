@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DragulaService} from "ng2-dragula/components/dragula.provider";
-import {PageSegment, Page, Video, Chart} from "../../util/model";
+import {PageSegment, Page, Video, Chart, Image} from "../../util/model";
 import {indexOfId} from "../../util/comon";
 import {ActivatedRoute, Params} from "@angular/router";
 import {ContentService} from "../../services/content.service";
@@ -94,7 +94,8 @@ export class PageComponent implements OnInit{
       this.pageRef = params['id'];
       console.log(this.pageRef);
       this.contentService.activPageSubject.subscribe((page) => {
-        if ( page !== undefined ) {
+        if (  page !== undefined &&
+              page !== null ) {
           this.page = page;
           this.pageSegments = page.pageSegments;
         } else {
@@ -109,7 +110,7 @@ export class PageComponent implements OnInit{
   newTemplates():PageSegment[]{
     let textTemplate = new PageSegment(null , "" , null , null, null);
     let videoTemplate = new PageSegment(null , null , new Video() , null, null);
-    let imageTemplate = new PageSegment(null , null , null , new Image(), null);
+    let imageTemplate = new PageSegment(null , null , null , new Image(null, null), null);
     let chartTemplate = new PageSegment(null , null , null , null, new Chart());
 
     return [textTemplate, videoTemplate, imageTemplate, chartTemplate];
