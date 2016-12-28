@@ -1,3 +1,13 @@
-<p>
-  video-editor works!
-</p>
+<md-card>
+  <form>
+
+    <md-input-container class="example-full-width">
+      <input #path md-input placeholder="Path" value="">
+    </md-input-container>
+
+  </form>
+
+  <md-card-actions>
+    <button (click)="imageChangedClicked(path.value)" md-button>change</button>
+  </md-card-actions>
+</md-card>

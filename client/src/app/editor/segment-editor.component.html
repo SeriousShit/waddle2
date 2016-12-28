@@ -9,7 +9,9 @@
   (imageChanged)="imageChanged($event)">
 </waddle-image-editor>
 
-<waddle-video-editor *ngIf="isVideo">
+<waddle-video-editor
+  *ngIf="isVideo"
+  (videoChanged)="videoChanged($event)">
 </waddle-video-editor>
 
 

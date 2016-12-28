@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Video} from "../../util/model";
 
 @Component({
   selector: 'waddle-video-editor',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VideoEditorComponent implements OnInit {
 
+  @Input('video') video: Video;
+  @Output('videoChanged') videoChanged = new EventEmitter();
+
+  url: string ="";
+
   constructor() { }
 
   ngOnInit() {
+    if (this.video !== undefined) {
+      this.url = this.video.url;
+
+    }
   }
 
+  videoChangedClicked(path: string){
+    this.videoChanged.next(new Video(path));
+  }
 }

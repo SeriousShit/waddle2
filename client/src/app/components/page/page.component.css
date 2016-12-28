@@ -9,3 +9,10 @@
 .pageContent{
   min-height: 200px;
 }
+
+.centeredSpinner{
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}

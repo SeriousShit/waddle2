@@ -1,51 +1,61 @@
-<div id="page">
-  <div class='wrapper'>
-    <div class='container, pageContent' [dragula]='"bag"' [dragulaModel]='pageSegments'>
-      <div *ngFor='let segment of pageSegments; let i = index'>
+<div *ngIf="(page === undefined || page === null) && pageAvailable">
+  <md-progress-spinner class="centeredSpinner" mode="indeterminate"></md-progress-spinner>
+</div>
+<div *ngIf="(page === undefined || page === null) && !pageAvailable">
+  <md-card class="centeredSpinner">
+    Page not available!
+  </md-card>
+</div>
+<div *ngIf="page !== undefined && page !== null">
+  <div id="page">
+    <div class='wrapper'>
+      <div class='container, pageContent' [dragula]='"bag"' [dragulaModel]='pageSegments'>
+        <div *ngFor='let segment of pageSegments; let i = index'>
 
-        <div class="segment" [ngClass]="{ 'slectet': selectedItem == i}" >
-          <app-page-segment
-             [pageSegment]="segment"
-             (segmentClicked)="segmentClicked($event)">
-          </app-page-segment>
+          <div class="segment" [ngClass]="{ 'slectet': selectedItem == i}" >
+            <app-page-segment
+              [pageSegment]="segment"
+              (segmentClicked)="segmentClicked($event)">
+            </app-page-segment>
+          </div>
+
         </div>
-
       </div>
+
+    </div>
+  </div>
+
+
+  <div id="screen-sidebar-expanded">
+    <md-tab-group [(selectedIndex)]="activeTabIndex">>
+
+      <md-tab label="Add">
+        <div class='container, template' id="" [dragula]='"bag"' [dragulaModel]='templates'>
+          <div *ngFor='let segment of templates'>
+            <app-page-segment [pageSegment]="segment" >
+
+            </app-page-segment>
+          </div>
+        </div>
+      </md-tab>
+
+      <md-tab label="Edit">
+
+        <segmentEditor
+          [pageSegment]="editItem"
+          (segmentChanged)="segmentChanged($event)">
+        </segmentEditor>
+
+      </md-tab>
+
+    </md-tab-group>
+
+    <div class="down">
+      <md-toolbar [color]="myColor">
+        <span class="example-fill-remaining-space"></span>
+        <span (click)="savePage()"><i class="material-icons">save</i></span>
+      </md-toolbar>
     </div>
 
   </div>
-</div>
-
-
-<div id="screen-sidebar-expanded">
-  <md-tab-group [(selectedIndex)]="activeTabIndex">>
-
-    <md-tab label="Add">
-      <div class='container, template' id="" [dragula]='"bag"' [dragulaModel]='templates'>
-        <div *ngFor='let segment of templates'>
-          <app-page-segment [pageSegment]="segment" >
-
-          </app-page-segment>
-        </div>
-      </div>
-    </md-tab>
-
-    <md-tab label="Edit">
-
-      <segmentEditor
-        [pageSegment]="editItem"
-        (segmentChanged)="segmentChanged($event)">
-      </segmentEditor>
-
-    </md-tab>
-
-  </md-tab-group>
-
-  <div class="down">
-    <md-toolbar [color]="myColor">
-      <span class="example-fill-remaining-space"></span>
-      <span (click)="savePage()"><i class="material-icons">save</i></span>
-    </md-toolbar>
-  </div>
-
 </div>

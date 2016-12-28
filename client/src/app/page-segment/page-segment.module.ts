@@ -7,11 +7,13 @@ import {MaterialModule} from "@angular/material";
 import {ChartPageSegmentComponent} from "./chart-page-segment/chart-page-segment.component";
 import {ImagePageSegmentComponent} from "./image-page-segment/image-page-segment.component";
 import {ChartsModule} from "ng2-charts";
+import {VgCoreModule} from "videogular2/src/core/core";
 
 @NgModule({
   imports: [
     CommonModule,
     ChartsModule,
+    VgCoreModule,
     MaterialModule.forRoot(),
   ],
   exports: [

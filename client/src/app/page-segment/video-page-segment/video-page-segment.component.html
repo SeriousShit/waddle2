@@ -1,3 +1,11 @@
-<p class="noContent">
+<p class="noContent" *ngIf="!hasVideo">
   <i class="material-icons">play_circle_outline</i>
+</p>
+
+<p *ngIf="hasVideo">
+  <vg-player >
+    <video vgMedia id="singleVideo" preload="auto" controls>
+      <source [src]="video.url" type="video/mp4">
+    </video>
+  </vg-player>
 </p>

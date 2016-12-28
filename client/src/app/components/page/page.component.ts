@@ -12,7 +12,7 @@ import {ContentService} from "../../services/content.service";
   styleUrls: ['page.component.css']
 })
 
-export class PageComponent implements OnInit{
+export class PageComponent implements OnInit {
 
 
   public templates: Array<PageSegment> = this.newTemplates();
@@ -25,13 +25,15 @@ export class PageComponent implements OnInit{
   private page: Page;
   pageRef: string;
 
+  pageAvailable: boolean = false;
+
   constructor(private contentService: ContentService,
               private dragulaService: DragulaService,
               private _activatedRoute: ActivatedRoute) {
 
 
     const bag: any = this.dragulaService.find('bag');
-    if (bag !== undefined ) this.dragulaService.destroy('bag');
+    if ( bag !== undefined ) this.dragulaService.destroy('bag');
 
     this.dragulaService.setOptions('bag', {
 
@@ -94,12 +96,13 @@ export class PageComponent implements OnInit{
       this.pageRef = params['id'];
       console.log(this.pageRef);
       this.contentService.activPageSubject.subscribe((page) => {
-        if (  page !== undefined &&
-              page !== null ) {
+        if ( page !== undefined &&
+          page !== null ) {
           this.page = page;
           this.pageSegments = page.pageSegments;
+          this.pageAvailable = true;
         } else {
-
+          this.pageAvailable = false;
         }
       });
 
@@ -107,11 +110,11 @@ export class PageComponent implements OnInit{
     });
   }
 
-  newTemplates():PageSegment[]{
-    let textTemplate = new PageSegment(null , "" , null , null, null);
-    let videoTemplate = new PageSegment(null , null , new Video() , null, null);
-    let imageTemplate = new PageSegment(null , null , null , new Image(null, null), null);
-    let chartTemplate = new PageSegment(null , null , null , null, new Chart());
+  newTemplates(): PageSegment[] {
+    let textTemplate = new PageSegment(null, "", null, null, null);
+    let videoTemplate = new PageSegment(null, null, new Video(null), null, null);
+    let imageTemplate = new PageSegment(null, null, null, new Image(null, null), null);
+    let chartTemplate = new PageSegment(null, null, null, null, new Chart());
 
     return [textTemplate, videoTemplate, imageTemplate, chartTemplate];
   }

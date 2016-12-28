@@ -55,8 +55,11 @@ export class PageSegment implements IdInterface{
 }
 
 export class Video {
+  url: string;
 
-  constructor(){}
+  constructor(url: string){
+    this.url = url;
+  }
 }
 
 export class Image {

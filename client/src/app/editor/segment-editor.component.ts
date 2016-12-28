@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Output, OnChanges} from '@angular/core';
-import {PageSegment, Image} from "../util/model";
+import {PageSegment, Image, Video} from "../util/model";
 import {EventEmitter} from "@angular/common/src/facade/async";
 
 @Component({
@@ -87,6 +87,14 @@ export class SegmentEditorComponent implements OnInit, OnChanges {
     console.log($event);
 
     this.pageSegment = new PageSegment(this.pageSegment.id, null, null, $event, null);
+    this.segmentChanged.next(this.pageSegment);
+  }
+
+  videoChanged($event: Video){
+    console.log("videoChanged");
+    console.log($event);
+
+    this.pageSegment = new PageSegment(this.pageSegment.id, null, $event, null, null);
     this.segmentChanged.next(this.pageSegment);
   }
 }
