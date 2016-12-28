@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Output, OnChanges} from '@angular/core';
-import {PageSegment} from "../util/model";
+import {PageSegment, Image} from "../util/model";
 import {EventEmitter} from "@angular/common/src/facade/async";
 
 @Component({
@@ -82,7 +82,7 @@ export class SegmentEditorComponent implements OnInit, OnChanges {
     this.segmentChanged.next(this.pageSegment);
   }
 
-  imageChanged($event: string) {
+  imageChanged($event: Image) {
 
     console.log($event);
 

@@ -11,7 +11,7 @@ export class ImagePageSegmentComponent implements OnInit {
   @Input('image') image: Image;
 
 
-  hasImage: boolean: false;
+  hasImage: boolean = false;
 
   constructor() { }
 
