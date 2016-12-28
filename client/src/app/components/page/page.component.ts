@@ -1,6 +1,6 @@
-import {Component, OnInit, HostListener, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DragulaService} from "ng2-dragula/components/dragula.provider";
-import {PageSegment, Page} from "../../util/model";
+import {PageSegment, Page, Video, Chart} from "../../util/model";
 import {indexOfId} from "../../util/comon";
 import {ActivatedRoute, Params} from "@angular/router";
 import {ContentService} from "../../services/content.service";
@@ -15,14 +15,12 @@ import {ContentService} from "../../services/content.service";
 export class PageComponent implements OnInit{
 
 
-  public templates: Array<PageSegment> = [new PageSegment("text"), new PageSegment("Bild"), new PageSegment("Video")];
+  public templates: Array<PageSegment> = this.newTemplates();
   public pageSegments: Array<PageSegment> = [];
 
   public selectedItem: number = -1;
   public activeTabIndex: number = 0;
   public editItem: PageSegment;
-
-  public textFieldContent: string = "";
 
   private page: Page;
   pageRef: string;
@@ -32,11 +30,15 @@ export class PageComponent implements OnInit{
               private _activatedRoute: ActivatedRoute) {
 
 
+    const bag: any = this.dragulaService.find('bag');
+    if (bag !== undefined ) this.dragulaService.destroy('bag');
+
     this.dragulaService.setOptions('bag', {
 
       // removeOnSpill: (el: Element, target: Element, source: Element, sibling: Element): boolean => {
       //   // console.log(`accepts`);
-      //   return target.classList.contains("pageContent");
+      //   return source.classList.contains("pageContent")
+      //     && !target.classList.contains("pageContent");
       // },
 
       copySortSource: (el: Element, target: Element, source: Element, sibling: Element): boolean => {
@@ -66,7 +68,8 @@ export class PageComponent implements OnInit{
     dragulaService.drop.subscribe((value) => {
       // console.log(`drop: ${value[0]}`);
       // this.onDrop(value.slice(1));
-      this.templates = [new PageSegment("text"), new PageSegment("Bild"), new PageSegment("Video")];
+
+      this.templates = this.newTemplates();
     });
     // dragulaService.over.subscribe((value) => {
     //   console.log(`over: ${value[0]}`);
@@ -94,33 +97,40 @@ export class PageComponent implements OnInit{
         if ( page !== undefined ) {
           this.page = page;
           this.pageSegments = page.pageSegments;
-
-
         } else {
 
         }
       });
 
       this.contentService.getPage(this.pageRef);
-
-
     });
   }
 
+  newTemplates():PageSegment[]{
+    let textTemplate = new PageSegment(null , "" , null , null, null);
+    let videoTemplate = new PageSegment(null , null , new Video() , null, null);
+    let imageTemplate = new PageSegment(null , null , null , new Image(), null);
+    let chartTemplate = new PageSegment(null , null , null , null, new Chart());
+
+    return [textTemplate, videoTemplate, imageTemplate, chartTemplate];
+  }
 
   segmentClicked($event) {
+
+    console.log("clicked");
+    console.log($event);
+
     this.activeTabIndex = 1;
 
     this.selectedItem = indexOfId(this.pageSegments, $event.id);
 
     this.editItem = this.pageSegments[indexOfId(this.pageSegments, $event.id)];
-    this.textFieldContent = this.editItem.text;
   }
 
-  textChange($event: string) {
-
+  segmentChanged($event: PageSegment) {
     console.log($event);
-    this.pageSegments[indexOfId(this.pageSegments, this.editItem.id)].text = $event;
+    this.pageSegments[indexOfId(this.pageSegments, this.editItem.id)]
+      = $event;
   }
 
   savePage() {

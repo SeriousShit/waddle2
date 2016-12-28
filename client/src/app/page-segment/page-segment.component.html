@@ -1,0 +1,18 @@
+<md-card (click)="clicked()">
+
+  <app-text *ngIf="isText" [text]="pageSegment.text">
+  </app-text>
+
+  <waddle-image-page-segment *ngIf="isImage" [image]="pageSegment.image">
+    image
+  </waddle-image-page-segment>
+
+  <waddle-video-page-segment *ngIf="isVideo" >
+  </waddle-video-page-segment>
+
+  <waddle-chart-page-segment *ngIf="isChart" [chart]="pageSegment.chart">
+    chart
+  </waddle-chart-page-segment>
+
+</md-card>
+

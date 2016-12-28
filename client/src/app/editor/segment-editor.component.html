@@ -1,0 +1,18 @@
+<app-markdown-editor
+  *ngIf="isText"
+  [(model)]="text"
+  (modelChange)="textChange($event)">
+</app-markdown-editor>
+
+<waddle-image-editor
+  *ngIf="isImage"
+  (imageChanged)="imageChanged($event)">
+</waddle-image-editor>
+
+<waddle-video-editor *ngIf="isVideo">
+</waddle-video-editor>
+
+
+<div *ngIf="!isText && !isImage && !isVideo && !isChart">
+    select item to edit
+</div>

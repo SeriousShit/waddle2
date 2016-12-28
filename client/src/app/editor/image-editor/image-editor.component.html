@@ -1,0 +1,17 @@
+<md-card>
+  <form>
+
+    <md-input-container class="example-full-width">
+      <input #path md-input placeholder="Path" value="">
+    </md-input-container>
+
+    <md-input-container class="example-full-width">
+        <textarea #caption md-input placeholder="image caption"></textarea>
+    </md-input-container>
+
+  </form>
+
+  <md-card-actions>
+    <button (click)="imageChangedClicked(path.value, caption.value)" md-button>change</button>
+  </md-card-actions>
+</md-card>
