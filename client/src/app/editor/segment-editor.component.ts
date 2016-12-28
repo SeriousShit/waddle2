@@ -80,7 +80,6 @@ export class SegmentEditorComponent implements OnInit, OnChanges {
     this.pageSegment = new PageSegment(this.pageSegment.id, $event, null, null, null);
 
     this.segmentChanged.next(this.pageSegment);
-    // this.pageSegments[indexOfId(this.pageSegments, this.editItem.id)].text = $event;
   }
 
   imageChanged($event: string) {
@@ -88,8 +87,6 @@ export class SegmentEditorComponent implements OnInit, OnChanges {
     console.log($event);
 
     this.pageSegment = new PageSegment(this.pageSegment.id, null, null, $event, null);
-
     this.segmentChanged.next(this.pageSegment);
-    // this.pageSegments[indexOfId(this.pageSegments, this.editItem.id)].text = $event;
   }
 }
