@@ -46,15 +46,20 @@ public class Main {
         // Gets the book resource for the provided id
         get("/api/page/:id", (request, response) -> {
             System.out.println("/api/page/" + request.params(":id"));
-            return pages.get(request.params(":id"));
+            Page page = pages.get(request.params(":id"));
+            System.out.println(page);
+            return page;
         }, gson::toJson);
 
         post("/api/page", (request, response) -> {
+            System.out.println("POST /api/page/");
             Page page = gson.fromJson(request.body(), Page.class);
+            System.out.println(request.body());
             System.out.println(page);
 
-//            pages.put(p.id, p);
-            pages.put(page.id, page);
+           if ( content.contains(new PageRef(page.id, ""))){
+               pages.put(page.id, page);
+           }
 
             return content;
         }, gson::toJson);

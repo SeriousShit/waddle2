@@ -21,16 +21,57 @@ export class Page implements IdInterface{
   }
 }
 
+
+
 export class PageSegment implements IdInterface{
+
   id:string;
-  name: string;
 
   text: string;
+  video: Video;
+  image: Image;
+  chart: Chart;
 
-  constructor(name: string) {
-    this.name = name;
-    this.id = getId();
+  constructor(id: string, text: string, video: Video, image: Image, chart: Chart) {
+    // console.log("new PageSegment");
+    // console.log("Text " + text);
+    // console.log("Video " + video);
+    // console.log("Image " + image);
+    // console.log("id " + id);
+
+    this.text = (text != null || text == "" ) ? text : null;
+
+    this.video = video ? video : null;
+    this.image = image ? image : null;
+    this.chart = chart ? chart : null;
+    this.id = id ? id : getId();
+
+    // console.log("this.Text " + this.text);
+    // console.log("this.Video " + this.video);
+    // console.log("this.Image " + this.image);
+    // console.log("this.id " + this.id);
   }
+
+}
+
+export class Video {
+
+  constructor(){}
+}
+
+export class Image {
+  url: string;
+  caption: string;
+
+  constructor(url: string, caption: string) {
+    this.url = url;
+    this.caption = caption;
+  }
+
+}
+
+export class Chart {
+  constructor(){}
 }
 
 export class ContetComponent {

@@ -14,6 +14,10 @@ public class Content {
 
     }
 
+    public boolean contains(PageRef pageRef ){
+        return this.pageRefs.contains(pageRef);
+    }
+
     public void addPagRef(PageRef  pageRef){
         this.pageRefs.add(pageRef);
     }

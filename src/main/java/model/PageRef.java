@@ -13,6 +13,21 @@ public class PageRef {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PageRef)) return false;
+
+        PageRef pageRef = (PageRef) o;
+
+        return id != null ? id.equals(pageRef.id) : pageRef.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
+    @Override
     public String toString() {
         return "PageRef{" +
                 "id='" + id + '\'' +

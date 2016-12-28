@@ -11,28 +11,32 @@ import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 import {PageComponent} from './components/page/page.component';
 import {DragulaModule} from "ng2-dragula/ng2-dragula";
-import { PageSegmentComponent } from './components/page-segment/page-segment.component';
-import { MarkdownEditorComponent } from './components/markdown-editor/markdown-editor.component';
 import { StartComponent } from './components/start/start.component';
+import {SegmentEditorModule} from "./editor/segment-editor.module";
+import {PageSegmentModule} from "./page-segment/page-segment.module";
+import { VideoEditorComponent } from './editor/video-editor/video-editor.component';
+import { ImageEditorComponent } from './editor/image-editor/image-editor.component';
+import { ChartEditorComponent } from './chart-editor/chart-editor.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PageComponent,
-    PageSegmentComponent,
-    MarkdownEditorComponent,
     NewPageDialog,
-    StartComponent
+    StartComponent,
+    ChartEditorComponent
   ],
   imports: [
     HttpModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserModule,
     FormsModule,
     MaterialModule.forRoot(),
-    DragulaModule
+    DragulaModule,
+    SegmentEditorModule,
+    PageSegmentModule
   ],
   providers: [
     ContentService

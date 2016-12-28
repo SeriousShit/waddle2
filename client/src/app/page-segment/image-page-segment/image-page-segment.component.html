@@ -1,0 +1,10 @@
+<p class="noContent" *ngIf="!hasImage">
+  <i class="material-icons">photo</i>
+</p>
+
+<div *ngIf="hasImage">
+  <img md-card-image [src]="image.url">
+  <md-card-content>
+    <p>{{image.caption}}</p>
+  </md-card-content>
+</div>
